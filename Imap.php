@@ -83,4 +83,7 @@ class Imap{
     public function getMime($id){
       return imap_fetchmime($this->inbox,$id,FT_PEEK);
     }
+    public function saveMsg($outFile,$id){
+      return imap_savebody($this->indbox,$outFile,$id);
+    }
 }
