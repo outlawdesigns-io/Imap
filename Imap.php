@@ -43,7 +43,11 @@ class Imap{
         $this->_connect();
     }
     protected function _connect(){
-        $this->inbox = imap_open($this->host,$this->user,$this->_password);
+        try{
+            $this->inbox = imap_open($this->host,$this->user,$this->_password);    
+        }catch(Exception $e){
+            throw new Exception($e->getMessage());
+        }
         if(!$this->inbox){
             throw new Exception('Cannot open mail box');
         }
